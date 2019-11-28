@@ -10,7 +10,7 @@ public class EnemyWalk : MonoBehaviour
     public Transform target2;
     public Transform target3;
     public Transform target4;
-    public Transform target5;
+   // public Transform target5;
     float speed = 1f;
 
     void Start()
@@ -48,8 +48,7 @@ public class EnemyWalk : MonoBehaviour
                 Debug.Log("Moving Towards 4");
                 break;
             case 5:
-                transform.LookAt(target5);
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                transform.Translate(-Vector3.forward * speed * Time.deltaTime);
                 Debug.Log("Moving Towards 5");
                 break;
         }
@@ -66,7 +65,7 @@ public class EnemyWalk : MonoBehaviour
     void NewDirection()
     {
         Debug.Log("Nieuwe positie");
-        dir = 5;
+        dir = 5;                                     
     }
 
     IEnumerator NumberGen()
