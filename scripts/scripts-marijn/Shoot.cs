@@ -7,13 +7,12 @@ public class Shoot : MonoBehaviour
     public GameObject Projectile;
     public GameObject[] ProjectileSpawn;
     public int offset;
-    private KeyCode key;
-    private float Timer = 0.3f;
+    private float ShootSpeed = 0.3f;
 
     // Update is called once per frame
     void Update()
     {
-        Timer -= Time.deltaTime;
+        ShootSpeed -= Time.deltaTime;
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 Fire(ProjectileSpawn[0]);
@@ -34,7 +33,7 @@ public class Shoot : MonoBehaviour
 
     void Fire(GameObject ps)
     {
-        if (Timer <= 0)
+        if (ShootSpeed <= 0)
         {
             GameObject test = Instantiate(Projectile, ps.transform.position, ps.transform.rotation);
 
@@ -48,7 +47,7 @@ public class Shoot : MonoBehaviour
             {
                 test.GetComponent<Projectile>().Offset = new Vector2(Input.GetAxis("Horizontal")/5, Input.GetAxis("Vertical")/5);
             }
-            Timer = 0.3f;
+            ShootSpeed = 0.3f;
         }
     }
 }
