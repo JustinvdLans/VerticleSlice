@@ -6,11 +6,7 @@ public class EnemyWalk : MonoBehaviour
 {
 
     float dir;
-    public Transform target1;
-    public Transform target2;
-    public Transform target3;
-    public Transform target4;
-   // public Transform target5;
+    public Transform[] targets;
     float speed = 1f;
 
     void Start()
@@ -28,28 +24,20 @@ public class EnemyWalk : MonoBehaviour
         switch (dir)
         {
             case 1:
-                transform.LookAt(target1);
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                Debug.Log("Moving Towards 1");
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+                Debug.Log("Direction 1");
                 break;
             case 2:
-                transform.LookAt(target2);
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                Debug.Log("Moving Towards 2");
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+                Debug.Log("Direction 2");
                 break;
             case 3:
-                transform.LookAt(target3);
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                Debug.Log("Moving Towards 3");
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+                Debug.Log("Direction 3");
                 break;
             case 4:
-                transform.LookAt(target4);
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                Debug.Log("Moving Towards 4");
-                break;
-            case 5:
-                transform.Translate(-Vector3.forward * speed * Time.deltaTime);
-                Debug.Log("Moving Towards 5");
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
+                Debug.Log("Direction 4");
                 break;
         }
     }
@@ -65,7 +53,15 @@ public class EnemyWalk : MonoBehaviour
     void NewDirection()
     {
         Debug.Log("Nieuwe positie");
-        dir = 5;                                     
+        dir -= 2;
+        if(dir == 0)
+        {
+            dir = 4;
+        }
+        if(dir == -1)
+        {
+            dir = 3;
+        }
     }
 
     IEnumerator NumberGen()
@@ -73,7 +69,7 @@ public class EnemyWalk : MonoBehaviour
         while (true)
         {
             dir = Random.Range(1, 5);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
         }
     }
 }
